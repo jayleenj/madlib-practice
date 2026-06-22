@@ -26,7 +26,7 @@ let generateButton = document.querySelector("#generate");
 // ************************************************************
 // Now we tell the button: "When someone clicks you, run this code"
 
-generateButton.addEventListener("click", function() {
+generateButton.addEventListener("click", () => {
 
   // **********************************************************
   // WE DO TOGETHER - Part 3: Read the first few inputs
@@ -50,16 +50,15 @@ generateButton.addEventListener("click", function() {
   // Template literals use backticks ` ` and ${} for variables
   // This makes it easy to mix text and variables together
 
-  let firstSentence = `Deep inside the codebase lives a ${adjective} bug.`;
+  // let firstSentence = `Deep inside the codebase lives a ${adjective} bug`;
 
   // Display it on the page using innerHTML
-  document.querySelector("#story").innerHTML = firstSentence;
+  // document.querySelector("#story").innerHTML = firstSentence;
 
 
   // ============================================================
   // YOUR TURN! Follow the same pattern to finish the story.
   // ============================================================
-
 
   // **********************************************************
   // YOUR TURN - Step 1: Read the remaining inputs
@@ -70,6 +69,9 @@ generateButton.addEventListener("click", function() {
 
   // Your code here:
 
+  let verb = document.querySelector("#verb").value;
+  let place = document.querySelector("#place").value;
+  let number = document.querySelector("#number").value;
 
 
   // **********************************************************
@@ -78,6 +80,9 @@ generateButton.addEventListener("click", function() {
   // Use console.log() to check your values, just like we did above
 
   // Your code here:
+  console.log("Verb:", verb);
+  console.log("Place:", place);
+  console.log("Number:", number);
 
 
 
@@ -88,15 +93,11 @@ generateButton.addEventListener("click", function() {
   // Use a template literal like we did for firstSentence.
   //
   // The full story is:
-  // "Deep inside the codebase lives a [adjective] bug that's been
-  // hiding for [number] days. [Name] grabs their debugger and
-  // ventures into [place] to hunt it down, only to discover the
-  // bug can [verb] and has been disguising itself as an innocent
-  // [noun] the whole time."
+  // "Deep inside the codebase lives a [adjective] bug that's been hiding for [number] days. [Name] grabs their debugger and ventures into [place] to hunt it down, only to discover the bug can [verb] and has been disguising itself as an innocent [noun] the whole time."
 
   // Your code here (replace firstSentence with your full story):
 
-
+  let fullStory = `Deep inside the codebase lives a ${adjective} bug that's been hiding for ${number} days. ${name} grabs their debugger and ventures into ${place} to hunt it down, only to discover the bug can ${verb} and has been disguising itself as an innocent ${noun} the whole time.`
 
   // **********************************************************
   // YOUR TURN - Step 4: Display the complete story
@@ -105,7 +106,7 @@ generateButton.addEventListener("click", function() {
   // (You might have already done this in Step 3 - that's fine!)
 
   // Your code here:
-
+  document.querySelector("#story").innerHTML = fullStory;
 
 });
 
@@ -117,7 +118,10 @@ generateButton.addEventListener("click", function() {
 // STRETCH 1: Show a message if any input is empty
 // Hint: Check if name === "" || adjective === "" || ... etc.
 // If any are empty, set innerHTML to a helpful message and use "return;"
-
+if (document.querySelector("#name").value == "") {
+  errorMsg = "Please ensure every input box has been filled.";
+  document.querySelector("#story").innerHTML = errorMsg;
+}
 
 // STRETCH 2: Make the Clear button work
 // Hint: You'll need to:
@@ -125,6 +129,17 @@ generateButton.addEventListener("click", function() {
 // 2. Add a click event listener
 // 3. Set each input's .value to ""
 // 4. Clear the story output too
+let clearBtn = document.querySelector("#clear");
+clearBtn.addEventListener("click", () => {
+  document.querySelector("#name").value = "";
+  document.querySelector("#adjective").value = "";
+  document.querySelector("#noun").value = "";
+  document.querySelector("#place").value = "";
+  document.querySelector("#verb").value = "";
+  document.querySelector("#number").value = "";
+  document.querySelector("#story").innerHTML = "";
+
+});
 
 
 // STRETCH 3: Use Number() with the number input
